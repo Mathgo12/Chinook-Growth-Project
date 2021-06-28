@@ -6,7 +6,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import GridSearchCV
-
 from sklearn.metrics import r2_score
 
 def import_data(folderpath, data_name):
@@ -19,10 +18,6 @@ def import_data(folderpath, data_name):
     total_df = pd.concat([df for df in dfs], axis=0)
     return total_df
 
-#  Data Transformation:
-#  1. Construct encoding object
-#  2. Split data
-#  3. Apply transformations
 def data_preprocessing(raw_dataframe, categorical_cols, scale_cols, test_size = 0.1, random_state = 45):
     columntransformer = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), categorical_cols)], remainder='passthrough')
 
@@ -37,53 +32,46 @@ def data_preprocessing(raw_dataframe, categorical_cols, scale_cols, test_size = 
 
     return [X_train, X_test, y_train, y_test]
 
-def build_model(params):  #  Dictionary
+def train_model(params, X_train, y_train, epochs=15):
     rf = RandomForestRegressor(**params)
 
-    return rf
+    sum_rsquared = 0
+    epochs = epochs
+    for epoch in range(epochs):
+        rf.fit(X_train, y_train)
+        rf_score = rf.score(X_train, y_train)
+        print(f"Epoch {epoch}; R squared: {rf_score}")
+        sum_rsquared += rf_score
+
+    average_rsquared = sum_rsquared / epochs
+    return [rf, average_rsquared]
 
 #  MAIN CODE
+
+
+#  Random Forest Hyperparameters:
+# n_estimators
+# max_samples          #Number of training data points used for each bootstrapped sample
+# min_samples_split     #Min number of data points to split each tree at each node
+# oob_score
+# min_impurity_decrease
+# max_features
+# min_samples_leaf
 
 folderpath = "..\\data\\"
 full_data = import_data(folderpath, "spring_age")
 X_train, X_test, y_train, y_test = data_preprocessing(full_data, ['stock'], ['year'])
 
-#  Random Forest Hyperparameters:
-# trees= 100
-# max_samples = 1000         #Number of training data points used for each bootstrapped sample
-# min_samples_split = 2      #Min number of data points to split each tree at each node
-# oob_score = True
-# min_impurity_decrease = 0.1
-# max_features
-# min_samples_leaf
-random_forest = build_model(
+random_forest, rsquared = build_model(
     {
         "n_estimators":100,
         "oob_score":True,
         "min_impurity_decrease":0.1
-    }
+    },
+    X_train,
+    y_train,
+    epochs=10
 )
-
-sum_rsquared = 0
-epochs = 10
-for epoch in range(epochs):
-    random_forest.fit(X_train, y_train)
-    rf_score = random_forest.score(X_train, y_train)
-    print(f"Epoch {epoch}; R squared: {rf_score}")
-    sum_rsquared+=rf_score
-
-average_rsquared = sum_rsquared/epochs
-
-#  Grid Search
-param_grid = {
-    "n_estimators": [50,75,100,125,150,175,200],
-    "max_features": [0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
-
-}
-gridsearch = GridSearchCV(random_forest, param_grid=param_grid, n_jobs=-1)
-gridsearch.fit(X_train, y_train)
-final_model = gridsearch.best_estimator_
-
 
 
 

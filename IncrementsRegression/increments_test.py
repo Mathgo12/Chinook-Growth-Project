@@ -5,7 +5,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 
 #  Data Preprocessing
-os.chdir('C:\\SuryaMain\\Python Projects\\ChinookUL\\Chinook-Salmon-Research-Project')
+os.chdir('/Chinook-Salmon-Research-Project')
 folderpath = "data/"
 increments_fall_age_files = []
 for file in os.listdir(folderpath):
