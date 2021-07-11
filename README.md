@@ -1,140 +1,187 @@
 # Chinook growth unsupervised learning project 
 
 
-General motivation and specific aims 
+## General motivation and specific aims 
 
-One of the primary goals of ecology is to understand how the distribution, abundance can productivity of population changes over time. These goals are particularly important in the context of global climate change, because systematic change in climate condition are likely to cause long term changes in these quantities with implications for natural resource management and conservation. Unfortunately modeling the relationship between changing climate conditions and populations is quite difficult. Many factor influence the distribution and abundance of species and the types of data require to untangle these relationships are often difficult to obtain and limited in quantity. 
-	A particular challenge is understanding the relationships between internal annual climate variability and biological processes. Many weather and climate processes important for organisms growth, reproduction and survival change on the time scale of years to decades. These effects of these processes can be estimated with regression modeling techniques, however, there are many associated challenges. First, there many be many climate processes that have a potential mechanistic relationship to the biological process of interest. This means the an accurate model may include many variable that might influence the process of interest. Including many predictors of the process of interest in a model is a trivial computation exercise, but can have major implications for how well the model can estimate the true relationships between variables and make predictions. These modeling strategies are also limited by the potential for complex - nonlinear relationships between variables and the time series nature of the data that is used to estimate the relationships between variables. 
-	New regression modeling techniques offers some potential for addressing these issues. Machine learning approaches such as random forest and boosted regression trees and non parametric methods like GAMs all provide methods to represent interactions between variables and nonlinear effects. These can be coupled with model selection techniques and cross validation procedures that account for the time series nature of the data and can identify the variables that are the most useful for a model. However, the question remains how do each of these methods compare and how well can they recover the true relationships in a data set given different constraint on the number of observations, and the strength of the relationships we hope to uncover. 
-	The goal of this project will be to test the ability of different modeling strategies uncover the relationships between internal climate variability and biological processes. We will approach this problem with simulated data where the true relationships are known and with an example data set from salmon biology. The specific aims and a plan to approach the project are given below. 
+One of the primary goals of ecology is to understand how the distribution, abundance, and productivity of populations changes over time. These goals are particularly important in the context of global climate change, because systematic change in climate condition are likely to cause long term changes in these quantities with implications for natural resource management and conservation. Unfortunately modeling the relationship between changing climate conditions and populations is quite difficult. Many factors influence the distribution and abundance of species and the types of data require to untangle these relationships are often difficult to obtain and limited in quantity. 
 
+A particular challenge is understanding the relationships between internal annual climate variability and biological processes. Many of th weather and climate processes important for organisms' growth, reproduction, and survival change on the time scale of years to decades. The effects of these processes can be estimated with regression modeling techniques but, there are many associated challenges. First, there may be many climate processes that have a potential mechanistic relationship to the biological process of interest. This means the an accurate model could include many variable that might influence the process of interest. Including a large number of predictors of the process of interest in a model is a trivial computation exercise, but can have major implications for how well model's the parameters can estimated. These modeling strategies are also limited by the potential for complex - nonlinear relationships between variables and inter temporal relationships between environemtnal and biological processes. 
 
-Aim 1: Test the ability of different methods to estimate the relationship between climate and biological factors from time series data. 
+New regression modeling techniques offers some potential for addressing these issues. Machine learning approaches such as random forest and boosted regression trees and non parametric methods like GAMs all provide methods to represent interactions between variables and nonlinear effects. These can be coupled with model selection techniques and cross validation procedures that account for the time series nature of the data and can identify the variables that are the most useful for a model. However, the question remains how do each of these methods compare and how well can they recover the true relationships in a data set given different constraints on the number of observations, and the strength of the relationships we hope to uncover. 
 
-Chinook growth data 
-Fit regression models of chinook growth rate based on climate variables 
-Compare models with several cross validation procedures (leave future out, leave one out, k-fold) to each other and to a simple baseline model such as the mean. 
-Determine which models perform the best, and if estimates of effect size or variable importance agree between methods
-Simulated data 
-Simulate data sets generated by a regression model based on time series vary several key parameters, such as the length of the data sets, the degree of observed variability and the inclusion of interactions and non-linear terms. 
-Fit several types of regression models to these data sets compare them with several cross validation metrics on the data sets, and compare the predicted relationships estimated by the model to the true relationships used to generate the data. 
-Calculate the rate at which the models identify true relationships in the data sets compared to spurious ones. 
+The goal of this project will be to test the ability of different modeling strategies uncover the relationships between internal climate variability and biological processes. We will approach this problem with simulated data where the true relationships are known and with an example data set from salmon biology. The specific aims and a plan to approach the project are given below. 
 
 
-Aim 2: Identify climatological and oceanographic factors that influence the growth of chinook salmon
+### Aim 1: Test the ability of different methods to estimate the relationship between climate and biological factors from time series data. 
 
-fit the best performing regression models identified in aim 1 to the growth time series for each age class and each stock grouping in the chinook growth data set. 
-Identify the variables with the greatest predictive skill for the growth of chinook salmon in each age class and population grouping. Assess our confidence in these results based on results from aim 1.b.iii.
+1) Chinook growth data: 
+
+	a) Fit regression models of chinook growth rate based on climate variables. 
+	
+	b) Compare models with several cross validation procedures (leave future out, leave one out, k-fold) to each other and to a simple baseline model such as the mean. 
+	
+	c) Determine which models perform the best, and if estimates of effect size or variable importance agree between methods
+
+2) Simulated data 
+
+	a) Simulate data sets generated by a regression model based on time series vary several key parameters, such as the length of the data sets, the degree of observed variability and the inclusion of interactions and non-linear terms. 
+
+	b)Fit several types of regression models to these data sets compare them with several cross validation metrics on the data sets, and compare the predicted relationships estimated by the model to the true relationships used to generate the data. 
+
+	c)Calculate the rate at which the models identify true relationships in the data sets compared to spurious ones. 
+
+
+### Aim 2: Identify climatological and oceanographic factors that influence the growth of chinook salmon
+
+1) fit the best performing regression models identified in aim 1 to the growth time series for each age class and each stock grouping in the chinook growth data set. 
+
+2) Identify the variables with the greatest predictive skill for the growth of chinook salmon in each age class and population grouping. Assess our confidence in these results based on results from aim 1.b.iii.
 
 
 
-Deliverables:
+## Deliverables:
 
 1) a report detailing results produced by by 9/1 
 
 2) End goal: A manuscript prepared for a fisheries journal or methods in ecology and evolution (no promises about final publication status can be made)
 
 
-Research steps/ plan. 
+## Research steps/ plan. 
 
-Required components:
+### Required components:
 
-Pre-processing of chinook growth data 
-Generation of simulated data sets 
-Model fitting procedures
-Crossvalidation procedures
-Comparison of estimated models and true data generating process
-Figures for results using simulated data
-Figures for results from chinook growth data set
+1) Pre-processing of chinook growth data 
 
+2) Generation of simulated data sets 
 
-Pre-processing of chinook growth data
+3) Model fitting procedures
 
-	We need to generate estimates of growth rate from the data available in the RMIS data base. These data are observations of chinook salmon as juveniles when they are released from hatcheries or captured and tagged in rivers. The observations of juveniles are associated with observations of adults when they are caught in the fishery or when they return to the river as adults. The measurements made on adult fish all results in the death of that individual, either because it was harvested or because it died while spawning. As such we do not have  multiple observation of the same fish from which we can observe its growth rate directly by measuring it later in life, instead we need to estimate this quantity from observations of other individuals. 
-	There are basically two approaches. The first is to estimate average growth rates for the population by comparing the mean length of fish observed at different ages from the same cohort. By comparing the mean length of two year old fish to three year old fish caught the following year we can estimate the average rate of growth that occurred in the intervening year. This methods assumes that all changes in the mean length of the population can be attributed to growth rather than other factors like size dependent mortality. 
-	Another related method would be to compare the lengths of similar individuals as a proxy of the growth rate for each individual. Specifically, if we want to estimate the growth rate of a fish caught as a two year old for the following year we would want to find the most similar fish caught as a three year the following year old that we could compare it too. We can do this by defining populations based on several characteristics that remain constant over time such as life history characteristics and region of origin, we can then compare fish from the same cohort with in these populations to identify growth. To estimate the growth rate of an individual however, we will not want to compare the length of an individual of age two to the mean length of individuals of age three, but rather identify an individual with in that population that most resembles the two year old fish for whom we are estimating a growth rate. If we are willing to assume that fish that are larger than average at age two are likely to be larger than average at age three then it might make sense to compare our two year old fish to a three year old with the same length relative to the rest of the population. This means that we will estimate growth rates by comparing individuals from the same population and cohort with adjacent ages and at the same quantile of length within the population. 
-	These two methods should provide very similar information about the growth rate of chinook salmon form a given population in a given year. However, they will produce very different number of raw observations. The first method will produce about one observation per age class per population per year while the second will produce one observation per individual per year. I am skeptical that this will make a meaningful difference but it is worth testing.  
-
-Steps:
-
-
-Method 1: 
-Set characteristics that will define population groupings 
-Write functions that find average for each population, age and birth (brood) year combination.
-Write function that computes the difference in mean length for adjacent ages (i.e. 1-2, 2-3, 3-4, ect) from the same population and brirth year.
-Compile values calculated by 3 into a data frame along with the population, ages and birth year
-
-
-
-Method 2:
-Set characteristics that define a population
-Write functions that rank each individual with in a population, age, birth year combination by length. This should assign each individual to a quantile (number between 0 and 1)
-Write function that for any individual find another individual from the same population that birth year that is one year older with nearest quantile of length and returns the difference in length between the two individuals. 
-Write a function that gathers the growth rates calculated by 3 and returns a data frame with these observations and the associated population, ages, birth year  and quantiles. 
-
-
-General:
-Save scripts for code in the file call “data_processing” or similar
-Save output data frames as CSV files in folder called “processed_data” or similar. 
-
-
-
-2) Generation of simulated data sets
-
-	We need to be able to create data sets generated by models with know relationships between the predictors and outcome variables. This will allow us to assess the performance of each modeling strategy against a know baseline. We will also want to be able to vary certain characteristics of the models that are used to generate these data to understand the conditions under which certain modeling strategies are likely to perform well. We will want these characteristics to be specific to the problem of comparing biological processes to climate and oceanographic variability, this means we will want our data sets to be comprised of time series that contain information on several predictors variables representing internal variations in climate and biological processes that are functions of these observed variable and unobserved variables. 
-	Several factors with in this will need to be taken into account. Firstly we want to represent time series data. One key characteristic of time series is something called auto correlation. Different processes will have different characteristics frequencies, some processes will evolve quickly with significant variation on short time scales (e.g. month or years) while other will vary slowly and how more variability on long time scales (e.g. years to decades) these characteristic length scales will impact how well regression model can fit relationships between variables. Another factor to take into account is the potential for nonlinear relationships between predictors and outcomes, It is hypothesized that many ecological processes will have thresholds beyond which there is significant changes or that the effect might saturate and become less strong after a certain point. The data sets we generate and the models we fit to them should be able to recreate these hypothetical relationships. Another feature that need to be included are interaction between variables. Interactions between variables indicate that there are synergistic effects where the effect of two predictors on the outcome is greater than the sum of their parts, such effect are widely believed to be important in ecology but they can be hard to estimate.
-	We will also want to include two other features in our simulated data sets that have more to do with study design than the data generation process. This is the number of variables tested and the length of the time series (number of observations) included in the study. Changing these two parameters will allow us to determine how much data is required to identify relationships between variables, and how to manage scenarios where many factors could be impacting a biological process.
-
-Steps:
-Write out the key characteristics of the data sets that we want to test
-Define a function that takes value of the characteristics from 1 and returns a data set the shows the true relationship between predicts and outcomes, a data set with simulated predictors and a data set of simulated outcomes. 
-Use function to simulate several data sets with each set of characteristics save to the “processed_data” folder
-
-
-3) Model fitting procedures 
-
-	We need to have implementations for several model fitting procedures. Some may be relative straight forward as is the case fo random first regression models, all of the predictors can be used to train the model. However, other strategies will require a model selection procedure to be implemented. This should be relatively straight forward, but will take some work.
-
-
-Steps: 
-Decide upon model to test. I think we should start with random forest and linear regression and add to this list later as needed. The linear regression model should be fit using a variable selection procedure, there are many different approaches. Again I think it will be best to decide on one initially and then add more later if needed.  
-Write a function for each model class that takes a data set with the target variable we hope to predict and a data set with predictors. This function should return a fit model object and any additional information required to interpret the results. 
-
-4) Cross validation procedures
-
-	We will need function that apply several cross validation procedures given any of the model. These cross validation procedures need to take into account the time series characteristics of the dat set. Specifically We should implement leave one out cross validation, where each year is left out of the data set and used as a test sample, k fold cross validation where blocks of years of length k are removed as test sets and leave future out cross validation where the final years of the data set are removed and used as a test data set. 
-	Each of the procedures needs a loss function to evaluate the performance of the model on the test data. We should initially use the mean squared error, but it may also be useful to different loss function based on likelihood considerations as well. 
-
-Insure all model objects produced have a predict method that takes a set of predictors and returns a list of expected values. 
-Write functions that generate test and training data sets for each of the cross validation procedures
-Write a function that fits the model of interest to each of the training data sets and calculates the performance of the model on the associated tests set. The function should return the sum of the performance measures on each of the training set -test set combinations. 
+4) Crossvalidation procedures
 
 5) Comparison of estimated models and true data generating process
 
+6) Figures for results using simulated data
 
-	we will need a method to compare how well the models of the simulated data can recover the true relationships used to generate the data. In some cases this can Mose likely be done by comparing parameters like regression coefficients, however, in some cases that functional for of the process that generated the data and the model used to fit the data will not match. For example, we will most likely used a regression model with known functional forms to generate our data sets, but methods like random forest do not produce models with matching parameters. 
-	One way this could be done would be to compare metrics like variable importance. There are also methods that can be used to directly compare the functional forms from the generating model and the model used to make predictions, even if the mathematical representations of the functions differ. 
-	This will not be an issue until later in the project so we do not need specific steps quite yet. 
+7) Figures for results from chinook growth data set
+
+### Description of eah component: 
+
+### 1) Pre-processing of chinook growth data
+
+We need to generate estimates of growth rate from the data available in the RMIS data base. These data are observations of chinook salmon as juveniles when they are released from hatcheries or captured and tagged in rivers. The observations of juveniles are associated with observations of adults when they are caught in the fishery or when they return to the river as adults. The measurements made on adult fish all results in the death of that individual, either because it was harvested or because it died while spawning. As such we do not have  multiple observation of the same fish from which we can observe its growth rate directly by measuring it later in life, instead we need to estimate this quantity from observations of other individuals. 
+
+There are basically two approaches. The first is to estimate average growth rates for the population by comparing the mean length of fish observed at different ages from the same cohort. By comparing the mean length of two year old fish to three year old fish caught the following year we can estimate the average rate of growth that occurred in the intervening year. This methods assumes that all changes in the mean length of the population can be attributed to growth rather than other factors like size dependent mortality. 
+
+Another related method would be to compare the lengths of similar individuals as a proxy of the growth rate for each individual. Specifically, if we want to estimate the growth rate of a fish caught as a two year old for the following year we would want to find the most similar fish caught as a three year the following year and compare its length to that of the two year old. We can do this by defining populations based on several characteristics that remain constant over time such as life history characteristics and region of origin, we can then compare fish from the same cohort with in these populations to identify growth. To estimate the growth rate of an individual, we will not want to compare the length of an individual of age two to the mean length of individuals of age three, but rather identify an individual with in that population that most resembles the two year old fish for whom we are estimating a growth rate. If we are willing to assume that fish that are larger than average at age two are likely to be larger than average at age three then it might make sense to compare our two year old fish to a three year old with the same length relative to the rest of the population. This means that we will estimate growth rates by comparing individuals from the same population and cohort with adjacent ages and at the same quantile of length reletive to the rest of the cohort at a given age. 
+
+These two methods should provide very similar information about the growth rate of chinook salmon form a given population in a given year. However, they will produce very different number of raw observations. The first method will produce about one observation per age class per population per year while the second will produce one observation per individual per year. I am skeptical that this will make a meaningful difference but it is worth testing.  
+
+Steps:
+
+
+1) Method 1: 
+
+	a) Set characteristics that will define population groupings 
+
+	b) Write functions that find average for each population, age and birth (brood) year combination.
+
+	c) Write function that computes the difference in mean length for adjacent ages (i.e. 1-2, 2-3, 3-4, ect) from the same population and brirth year.
+
+	d) Compile values calculated by 3 into a data frame along with the population, ages and birth year
 
 
 
+2) Method 2:
+
+	a) Set characteristics that define a population
+	
+	b) Write functions that rank each individual with in a population, age, birth year combination by length. This should assign each individual to a quantile (number between 0 and 1)
+	
+	c) Write function that for any individual find another individual from the same population that birth year that is one year older with nearest quantile of length and returns the difference in length between the two individuals. 
+	
+	d) Write a function that gathers the growth rates calculated by 3 and returns a data frame with these observations and the associated population, ages, birth year  and quantiles. 
+
+
+General: 
+a) Save scripts for code in the file call “data_processing” or similar
+
+b) Save output data frames as CSV files in folder called “processed_data” or similar. 
 
 
 
+### 2) Generation of simulated data sets
+
+We need to be able to create data sets generated by models with know relationships between the predictors and outcome variables. This will allow us to assess the performance of each modeling strategy against a know baseline. We will also want to be able to vary certain characteristics of the models that are used to generate these data to understand the conditions under which certain modeling strategies are likely to perform well. We will want these characteristics to be specific to the problem of comparing biological processes to climate and oceanographic variability, this means we will want our data sets to be comprised of time series that contain information on several predictors variables representing interannual variations in climate and biological processes that are functions of these observed  and unobserved variables. 
+
+Several factors will need to be taken into account. Firstly, we want to represent time series data. One key characteristic of time series is something called auto correlation. Different processes will have different characteristics time scales, some processes will evolve quickly with significant variation on short time scales (e.g. month or years) while other will vary more slowly and have more variability on long time scales (e.g. years to decades). These characteristic time scales will impact how well regression model can fit relationships between variables. Another factor to take into account is the potential for nonlinear relationships between predictors and outcomes. It is hypothesized that many ecological processes will have thresholds beyond which significant changes occur or that relationshiops might saturate and become less strong after a certain point. The data sets we generate and the models we fit to them should be able to recreate these hypothetical relationships. Another feature that need to be included are interaction between variables. Interactions between variables indicate that there are synergistic effects where the impact of two predictors on the outcome is greater than the sum of their parts, such effects are widely believed to be important in ecology but they can be hard to estimate.
+
+We will also want to include two other features in our simulated data sets that have more to do with study design than the data generation process. Such as the number of variables tested and the length of the time series (number of observations) included in the study. Changing these two parameters will allow us to determine how much data is required to identify relationships between variables, and how to manage scenarios where many factors could be impacting a biological process.
+
+Steps:
+a) Write out the key characteristics of the data sets that we want to test
+
+b) Define a function that takes value of the characteristics from 1 and returns a data set the shows the true relationship between predicts and outcomes, a data set with simulated predictors and a data set of simulated outcomes. 
+
+c) Use function to simulate several data sets with each set of characteristics save to the “processed_data” folder
 
 
+### 3) Model fitting procedures 
 
-Short term goals and steps. 
- I am not sure how long this will take - it might just be a couple of week or it could be the entire summer. 
+We need to have implementations for several model fitting procedures. Some may be relative straight forward as is the case fo random first regression models, all of the predictors can be used to train the model. However, other strategies will require a model selection procedure to be implemented. This should be relatively straight forward, but will take some work.
+
+
+Steps: 
+
+a) Decide upon model to test. I think we should start with random forest and linear regression and add to this list later as needed. The linear regression model should be fit using a variable selection procedure, there are many different approaches. Again I think it will be best to decide on one initially and then add more later if needed.  
+
+b) Write a function for each model class that takes a data set with the target variable we hope to predict and a data set with predictors. This function should return a fit model object and any additional information required to interpret the results. 
+
+### 4) Cross validation procedures
+
+We will need functions that apply several cross validation procedures given a model of interest. These cross validation procedures need to take into account the time series characteristics of the dat set. Specifically We should implement leave one out cross validation, where each year is left out of the data set and used as a test sample, k fold cross validation where blocks of years of length k are removed as test sets and leave future out cross validation where the final years of the data set are removed and used as a test data set. 
+
+Each of the procedures needs a loss function to evaluate the performance of the model on the test data. We should initially use the mean squared error, but it may also be useful to different loss function based on likelihood considerations as well. 
+
+Steps: 
+
+a) Insure all model objects produced have a predict method that takes a set of predictors and returns a list of expected values. 
+
+b) Write functions that generate test and training data sets for each of the cross validation procedures
+
+c) Write a function that fits the model of interest to each of the training data sets and calculates the performance of the model on the associated tests set. The function should return the sum of the performance measures on each of the training set -test set combinations. 
+
+
+### 5) Comparison of estimated models and true data generating process
+
+
+we will need a method to compare how well the models of the simulated data can recover the true relationships used to generate the data. In some cases this can Mose likely be done by comparing parameters like regression coefficients, however, in some cases that functional for of the process that generated the data and the model used to fit the data will not match. For example, we will most likely used a regression model with known functional forms to generate our data sets, but methods like random forest do not produce models with matching parameters. 
+
+One way this could be done would be to compare metrics like variable importance. There are also methods that can be used to directly compare the functional forms from the generating model and the model used to make predictions, even if the mathematical representations of the functions differ. This will not be an issue until later in the project so we do not need specific steps quite yet. 
+
+
+### 6, 7) Figures and visualizations
+
+The goal of these steps is to create visulizations that help communicated the results of the models. We will want figures that communicated the models performaces reletiuve to baseline meausres (i.e. help visuliaize the cross validation procedures) and figures that help visualize the patterns detected by the models (e.g. partial effect and variable importnace plots.) 
+
+
+## Short term goals and steps. 
+
+I am not sure how long this will take - it might just be a couple of week or it could be the entire summer. 
 
 The full project outlined about will is fairly ambitious and will be quite involved. However, in the short term there are some immediate steps that can be taken. 
 
-Fit random forest models to the chinook salmon data 
-Compare these models to a simple baseline like the mean with cross validation procedures to see if there is any predictive skill
-Produce figures that show the importance of each variable used in the model
-Produce figures that show the estimated relationship between each predictor variable and growth rates of chinook salmon. 
-Produce a document that collects the all of the figures and summary statistics produced by point 1-3 to share the results
+1) Fit random forest models to the chinook salmon data 
+
+	a)Compare these models to a simple baseline like the mean with cross validation procedures to see if there is any predictive skill
+	
+	b) Produce figures that show the importance of each variable used in the model
+	
+	c) Produce figures that show the estimated relationship between each predictor variable and growth rates of chinook salmon. 
+	
+	d) Produce a document that collects the all of the figures and summary statistics produced by point 1-3 to share the results
 
 2) Fit a linear regression model with variable selection routine to chinook growth data
-	1) Repeat the same steps from the random forest modeling with this modeling strategy
-	2) compare predictive skill of random forest, the regression model and a baseline. 
+
+	a) Repeat the same steps from the random forest modeling with this modeling strategy
+	
+	b) compare predictive skill of random forest, the regression model and a baseline. 
