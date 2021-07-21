@@ -1,11 +1,11 @@
-from ChinookSalmonResearchProject.IncrementsRegression import all_increments
+from ChinookSalmonResearchProject.IncrementsRegression import model
 
 def increments_correlations(datafolder_path, datafile_names):
     for identifier in datafile_names:
-        full_data = all_increments.import_data(datafolder_path, identifier)
-        X_train, X_test, y_train, y_test = all_increments.data_preprocessing(full_data, ['stock'], ['year'])
+        full_data = model.import_data(datafolder_path, identifier)
+        X_train, X_test, y_train, y_test = model.data_preprocessing(full_data, ['stock'], ['year'])
 
-        random_forest, rsquared = all_increments.train_model(
+        random_forest, rsquared = model.train_model(
             {
                 "n_estimators":100,
                 "oob_score":True,
