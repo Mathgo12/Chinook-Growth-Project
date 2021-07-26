@@ -16,22 +16,15 @@ class RFRegressor(BaseEstimator, RegressorMixin):
         self.hparams = params
         self.model = RandomForestRegressor(**self.hparams)
         self.rsquared = None #  Only using training data
+        self.istrained = False
 
     def __str__(self):
         return self.hparams
 
-    def get_hparams(self):
-        return self.params
-
-    def get_model(self, **kwargs):
-        return self.model #  Returns model object
-
-    def get_rsquared(self):
-        return self.rsquared
-
     def fit(self, X_train, y_train):
         self.model.fit(X_train,y_train)
         self.rsquared = self.model.score(X_train,y_train)
+        self.istrained = True
 
     def predict(self, X, y=None):
         pred = self.model.predict(X)
@@ -41,10 +34,9 @@ class RFRegressor(BaseEstimator, RegressorMixin):
         else:
             return pred
 
-    def pd_plot(self, X, features):
-        #pdp, axes = partial_dependence(self.model, X, [feature])
-        plot_partial_dependence(self.model, X=X, features=features, n_jobs=-1)
-
+    @classmethod
+    def pd_plot(cls,model, X, features):
+        plot_partial_dependence(model, X=X, features=features, n_jobs=-1)
 
     def vi_plot(self):
         pass

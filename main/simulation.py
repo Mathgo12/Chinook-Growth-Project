@@ -29,12 +29,13 @@ def train_sim_model(data_path = os.path.join(SIMULATION_BASEPATH, 'data_set_1'))
     }
     rf_model = model.RFRegressor(params = params)
     rf_model.fit(X_train,y_train)
-    r2_train = rf_model.get_rsquared()
+    r2_train = rf_model.rsquared
     test_pred, r2_test = rf_model.predict(X_test, y_test)
 
     return [rf_model, (r2_train, r2_test)]
 
-def sim_dataframe():
+def sim_dataframe(simulation_datapath = SIMULATION_BASEPATH):
+    features = []
     r2_train_vals = []
     r2_test_vals = []
     total_effects = []
@@ -45,12 +46,13 @@ def sim_dataframe():
     rhoU_vals = []
     intU_vals = []
 
-    for data_path in os.listdir(SIMULATION_BASEPATH):
+    for data_path in os.listdir(simulation_datapath):
         if "data_set_" in data_path:
             full_datapath = os.path.join(SIMULATION_BASEPATH,data_path)
             rf_model, (r2_train, r2_test) = train_sim_model(data_path = full_datapath)
             hyperparams = pd.read_csv(os.path.join(full_datapath, 'hyper_params.csv'))
 
+            features.append(hyperparams['m'][0])
             r2_train_vals.append(r2_train)
             r2_test_vals.append(r2_test)
             total_effects.append(hyperparams['total_effect'][0])
@@ -62,6 +64,7 @@ def sim_dataframe():
             intU_vals.append(hyperparams['int_U'][0])
 
     df = pd.DataFrame({
+        'features': features,
         'r2_train': r2_train_vals,
         'r2_test': r2_test_vals,
         'totals_effect': total_effects,
@@ -78,7 +81,11 @@ def sim_dataframe():
 
 def main():
     simulation_results = sim_dataframe()
-    simulation_results.to_csv(os.path.join(BASEPATH, 'main', 'sim_results.csv'), index=False)
+    simulation_results.to_csv(os.path.join(BASEPATH, 'main', 'sim_results2.csv'), index=False)
+
+    #rf_model, (r2_train, r2_test), X_train = train_sim_model()
+    # features = [0,1]
+    # model.RFRegressor.pd_plot(rf_model, X_train, features)
 
 
 
