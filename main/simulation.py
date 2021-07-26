@@ -13,8 +13,8 @@ from sklearn.inspection import partial_dependence
 from ChinookSalmonResearchProject.IncrementsRegression import model
 #from ChinookSalmonResearchProject.IncrementsRegression.increments_processing import import_data, data_preprocessing
 
-SIMULATION_BASEPATH = "C:/SuryaMain/Python Projects/ChinookUL/ChinookSalmonResearchProject/simulate_nonlinear_data"
-
+BASEPATH = 'C:/SuryaMain/Python Projects/ChinookUL/ChinookSalmonResearchProject'
+SIMULATION_BASEPATH = os.path.join(BASEPATH, "simulate_nonlinear_data")
 
 def train_sim_model(data_path = os.path.join(SIMULATION_BASEPATH, 'data_set_1')):
     X = pd.read_csv(os.path.join(data_path, 'X.csv'))
@@ -34,10 +34,52 @@ def train_sim_model(data_path = os.path.join(SIMULATION_BASEPATH, 'data_set_1'))
 
     return [rf_model, (r2_train, r2_test)]
 
+def sim_dataframe():
+    r2_train_vals = []
+    r2_test_vals = []
+    total_effects = []
+    nonlinear_vals = []
+    interactions_vals = []
+    rhoX_vals = []
+    intX_vals = []
+    rhoU_vals = []
+    intU_vals = []
+
+    for data_path in os.listdir(SIMULATION_BASEPATH):
+        if "data_set_" in data_path:
+            full_datapath = os.path.join(SIMULATION_BASEPATH,data_path)
+            rf_model, (r2_train, r2_test) = train_sim_model(data_path = full_datapath)
+            hyperparams = pd.read_csv(os.path.join(full_datapath, 'hyper_params.csv'))
+
+            r2_train_vals.append(r2_train)
+            r2_test_vals.append(r2_test)
+            total_effects.append(hyperparams['total_effect'][0])
+            nonlinear_vals.append(hyperparams['nonlinear'][0])
+            interactions_vals.append(hyperparams['interactions'][0])
+            rhoX_vals.append(hyperparams['rho_X'][0])
+            intX_vals.append(hyperparams['int_X'][0])
+            rhoU_vals.append(hyperparams['rho_U'][0])
+            intU_vals.append(hyperparams['int_U'][0])
+
+    df = pd.DataFrame({
+        'r2_train': r2_train_vals,
+        'r2_test': r2_test_vals,
+        'totals_effect': total_effects,
+        'nonlinear': nonlinear_vals,
+        'interactions': interactions_vals,
+        'rho_X': rhoX_vals,
+        'int_X': intX_vals,
+        'rho_U': rhoU_vals,
+        'int_U': intU_vals
+
+    })
+
+    return df
 
 def main():
-    for data_path in os.listdir(SIMULATION_BASEPATH):
-        rf_model, (r2_train, r2_test) = train_sim_model(data_path)
+    simulation_results = sim_dataframe()
+    simulation_results.to_csv(os.path.join(BASEPATH, 'main', 'sim_results.csv'), index=False)
+
 
 
 if __name__ == "__main__":

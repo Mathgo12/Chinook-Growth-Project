@@ -17,6 +17,9 @@ class RFRegressor(BaseEstimator, RegressorMixin):
         self.model = RandomForestRegressor(**self.hparams)
         self.rsquared = None #  Only using training data
 
+    def __str__(self):
+        return self.hparams
+
     def get_hparams(self):
         return self.params
 
