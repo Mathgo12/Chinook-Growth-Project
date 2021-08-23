@@ -31,6 +31,19 @@ These comparisons should be summarized by a single value that describes how simi
 how this performance metric changes has each of the hyper paramters used to genreate the data sets are changed.
 
 
+## Some explanation/ background
+
+The big picture question I want to work towards understanding with the simulation testing we are working on here is how well 
+relationships  between biological processes that are importnat for conservation and resource management and physical and
+climatological processes can be worked out using time series data. In principal we should be able to work out the relationship 
+between these processes by analyzing correlations between the biological and the climatological processes. However, if the 
+relationships are complex and the amount of data available is limited then there will be limits to the how well the true 
+relationships can be reconstructed. These limitations will inevitably produce uncertainty and these uncertainties which are 
+important to characterize. 
+
+The goal of a simulation testing is precisely to characterize uncertainty. Our goal is to understand how well we the relationships 
+between different processes can be understood, and how this is effected by 
+
 
 
 
