@@ -51,7 +51,19 @@ compare the estimated relationships found by analyzing the data to the true rela
 many data sets will allow us to see how well and how consistently the true relationships used to generate the data can be 
 reconstructed.
 
-Two factors infludence how 
+Three factors can influence uncertainty or our ability to extract information from a dat sets. The quality and quantity of the 
+data, abstract characteristics of the true relationships, and the method used to estimate the relationships from the data. the
+first factor, data  quantity and quality should be easy to understand. If there is more data it is easier to distinguish between
+the true relationships in the data and correlations that simple appear by chance.  An example of "abstract characteristics of the 
+true relationships" would be factors such as the strength of the true relationship and the functional form (e.g. linear or nonlinear).
+These influence uncertainty because stronger relationships are easier to understand that weaker ones and simpler functional forms
+such as linear relationships are easier to estimate than complex -nonlinear ones. The last factor, methedology can be quite important.
+Some methods make strong assumptions about the true relationships, such as linearity. If these assumptions are violated then the method
+will not beable to capture the true processes. In contrast other methods allow for more flexibility, but these methods are more likely
+to "over fit" the data. We need to choose methods that make strong enough assumptions about the true relationships to avoid overfitting
+without over simplifying. 
+
+
 
 
 
