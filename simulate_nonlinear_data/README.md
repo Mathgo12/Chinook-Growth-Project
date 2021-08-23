@@ -42,8 +42,16 @@ relationships can be reconstructed. These limitations will inevitably produce un
 important to characterize. 
 
 The goal of a simulation testing is precisely to characterize uncertainty. Our goal is to understand how well we the relationships 
-between different processes can be understood, and how this is effected by 
+between different processes can be understood, and how this is effected by our assumptions about the characteristics of the true 
+underlying relationships and the quantities of data that are available. 
 
+Simulation testing is a very useful method for answering these questions because we can simulate data sets where the true 
+relationships are known. We can then use tools to try to reconstruct these relationships using the data that we simulated and 
+compare the estimated relationships found by analyzing the data to the true relationships. Repeating this process many times on
+many data sets will allow us to see how well and how consistently the true relationships used to generate the data can be 
+reconstructed.
+
+Two factors infludence how 
 
 
 
