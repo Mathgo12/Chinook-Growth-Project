@@ -66,4 +66,5 @@ without over simplifying.
 
 ## Explanation of hyper-paramters for simulated data sets. 
 
-
+Each of the data sets used for the simulation tests was generated to have distinct sets of characteristics. these characteristics are 
+described by a set of "hyper paramters" the value of these paramters 
