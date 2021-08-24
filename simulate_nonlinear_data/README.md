@@ -64,6 +64,6 @@ to "over fit" the data. We need to choose methods that make strong enough assump
 without over simplifying. 
 
 
-
+## Explanation of hyper-paramters for simulated data sets. 
 
 
