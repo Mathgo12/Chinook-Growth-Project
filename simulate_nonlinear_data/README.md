@@ -67,7 +67,51 @@ without over simplifying.
 ## Explanation of hyper-paramters for simulated data sets. 
 
 Each of the data sets used for the simulation tests was generated to have distinct sets of characteristics. these characteristics are 
-described by a set of "hyper paramters" the value of these paramters are saved in the hyper_params.csv files along side the data sets. These hyper paramters allow us to test how differnt factors effect the performance of the models we are testing change under differnt conditons. There are 9 differnt hyper paramters used to define the characteristics of the data sets $n$,	m,	total_effect,	nonlinear,	interactions,	rho_X,	int_X,	rho_U and int_U.
+described by a set of "hyper paramters" the value of these paramters are saved in the hyper_params.csv files along side the data sets. These hyper paramters allow us to test how differnt factors effect the performance of the models we are testing change under differnt conditons. There are 9 differnt hyper paramters used to define the characteristics of the data sets n,	m,	total_effect,	nonlinear,	interactions,	rho_X,	int_X,	rho_U and int_U.
 
 ### n
-the hyper paramter n 
+the hyper paramter n describes the number of observaitons in the data set. 
+
+### m 
+the number of features used to generate the data
+
+### total_effect. 
+The amount of variability explained by the features. This can be thought of as the r squared value of a perfect model of the data set. 
+
+### nonlinear
+
+The number of nonlinear terms included in the model used to simulate the data. 
+
+The sturcture of the model used to simualte the data is based on a linear regression model, e.g.
+
+y = a + b*x1 + c*x2 + dx3 .
+
+However, soe of the features are trasnfomed with a nonlinear function, e.g. 
+
+y = a + b*x1 + c*x2 + d*f(x3) .
+
+This hyper parmter decribes the number of features that have been transformed in this way.
+
+
+### interacitons
+
+This paramter describes the number of interaction terms included in the model.  
+
+In addition to linear and nonlinear terms sometimes the product of two varibles is inculuded in the model, e.g.
+
+y = a + b*x1 + c*x2 + d*x1*x2
+
+This paramter describes how many of these terms ar eincluded in the model.
+
+### rho_X, int_X
+
+These paramters describe the distribution of the features (x varaibles)
+
+### rho_U, int_U
+
+These paramters describe the distribution of the variability in y that is not explained by the features (x). In other words they 
+describe the distribtuion of the residuals of the perfrect model of the data. 
+
+
+
+
