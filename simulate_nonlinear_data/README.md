@@ -67,4 +67,7 @@ without over simplifying.
 ## Explanation of hyper-paramters for simulated data sets. 
 
 Each of the data sets used for the simulation tests was generated to have distinct sets of characteristics. these characteristics are 
-described by a set of "hyper paramters" the value of these paramters 
+described by a set of "hyper paramters" the value of these paramters are saved in the hyper_params.csv files along side the data sets. These hyper paramters allow us to test how differnt factors effect the performance of the models we are testing change under differnt conditons. There are 9 differnt hyper paramters used to define the characteristics of the data sets $n$,	m,	total_effect,	nonlinear,	interactions,	rho_X,	int_X,	rho_U and int_U.
+
+### n
+the hyper paramter n 
