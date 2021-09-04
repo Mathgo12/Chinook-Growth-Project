@@ -1,0 +1,14 @@
+#  Evaluating the Effectiveness of Random Forest with r^2 values:
+    - Compute the r^2 test and train values for each dataset, place them as new columns to 'hyper_params.csv'
+    - Compute the difference between r2_train and r2_test --> generally a small difference is better, especially with r2_trains close to 1
+    - Display these differences on Box Plots. Set the x-axis as the number of features or nonlinear
+    - Save the box plot summary statistics - median, IQR, outliers
+
+# Analyzing Variable Importance with Simulation Testing
+    1. Find the variable importance for random forest trained on each simulated dataset
+    2. Set this variable importance as a new column in each 'Imp.csv'
+    3. Display the rankings of random forest variable importance (e.g. on bar graphs) alongside the rankings of the simulated variable importance
+    4. Compute the covariance between these two variable importance metrics
+    5. Display the covariance on a box plot
+    6. Save box plot summary statistics
+    
