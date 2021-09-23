@@ -25,4 +25,4 @@ compute_importance <- function(j){
 }
 
 #compute_importance(3)
-parallel::mclapply(1:100,compute_importance, mc.cores = 10)
+parallel::mclapply(1:600,compute_importance, mc.cores = 10)
