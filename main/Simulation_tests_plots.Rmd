@@ -1,0 +1,153 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+setwd("~/github/Chinook-Growth-Project")
+dat <- read.csv("main/sim_results_4.csv")
+dat1 <- read.csv("main/sim_results_4.csv")
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+```
+
+```{r}
+dat <- melt(dat, id.vars = setdiff(names(dat), c("cos_sim","cos_sim_rand")) )
+dat
+```
+
+```{r}
+
+ggplot(dat, aes(x = as.factor(features), 
+                y = value, fill = variable))+
+  geom_boxplot()+
+  scale_fill_brewer(palette =   "Dark2")+
+  theme_classic()
+```
+
+```{r}
+ggplot(dat, aes(x = as.factor(features), 
+                y = value, fill = variable))+
+  geom_boxplot()+
+  scale_fill_brewer(palette =   "Dark2")+
+  theme_classic()+facet_wrap(~N, ncol = 1)
+```
+
+```{r}
+ggplot(dat, aes(x = as.factor(features), 
+                y = value, fill = variable))+
+  geom_boxplot()+
+  scale_fill_brewer(palette =   "Dark2")+
+  theme_classic()+facet_wrap(~rho_U, ncol = 1)
+```
+
+
+```{r}
+ggplot(dat, aes(x = as.factor(features), 
+                y = value, fill = variable))+
+  geom_boxplot()+
+  scale_fill_brewer(palette =   "Dark2")+
+  theme_classic()+facet_wrap(~rho_X, ncol = 1)
+```
+
+
+```{r}
+ggplot(dat, aes(x = as.factor(features), 
+                y = value, fill = variable))+
+  geom_boxplot()+
+  scale_fill_brewer(palette = "Dark2")+
+  theme_classic()+facet_wrap(~nonlinear, ncol = 1)
+```
+
+```{r}
+ggplot(dat, aes(x = as.factor(features), 
+                y = value, fill = variable))+
+  geom_boxplot()+
+  scale_fill_brewer(palette = "Dark2")+
+  theme_classic()+facet_wrap(~interactions, ncol = 1)
+```
+
+```{r}
+ggplot(dat, aes(x = as.factor(features), 
+                y = value, fill = variable))+
+  geom_boxplot()+
+  scale_fill_brewer(palette = "Dark2")+
+  theme_classic()+facet_wrap(~totals_effect, ncol = 1)
+```
+```{r}
+ggplot(dat1 %>% filter(variable == "cos_sim"),
+       aes(y = cos_sim -cos_s,x = r2_train))+
+  geom_point()+
+  geom_smooth(method = lm)+
+  scale_fill_brewer(palette = "Dark2")+
+  theme_classic()+
+  facet_wrap(~features)
+```
+
+```{r}
+mod = lm(data = dat %>% filter(variable == "cos_sim"), value ~
+      as.factor(features) + 
+     as.factor(totals_effect) + as.factor(rho_X) + as.factor(rho_U) + 
+       as.factor(N)+r2_train)
+summary(mod)
+```
+
+
+```{r}
+mod = lm( data = dat1 %>% 
+  group_by(N, features, totals_effect, rho_X, nonlinear, interactions) %>%
+  mutate(cos_sim_rand = mean(cos_sim_rand)) %>%
+  ungroup()%>%
+  mutate(score = cos_sim - cos_sim_rand),
+  score ~ as.factor(features) + 
+    as.factor(N) + as.factor(totals_effect)+
+    as.factor(nonlinear)+
+    as.factor(interactions)+
+    as.factor(rho_X)+ r2_test)
+summary(mod)
+```
+
+
+```{r}
+mod = lm( data = dat1 %>% 
+  group_by(N, features, totals_effect, rho_X, nonlinear) %>%
+  mutate(cos_sim_rand = mean(cos_sim_rand)) %>%
+  ungroup()%>%
+  mutate(score = cos_sim - cos_sim_rand),
+  score ~ as.factor(features) + 
+    as.factor(N)+ r2_train)
+summary(mod)
+```
+
+```{r}
+ggplot(dat1 %>% 
+  group_by(N, features, rho_X, nonlinear) %>%
+  mutate(cos_sim_rand = mean(cos_sim_rand)) %>%
+  ungroup()%>%
+  mutate(score = cos_sim - cos_sim_rand),
+  aes(y = score, x = r2_train, color = nonlinear))+
+  geom_point()+
+  facet_grid(features~N, scales = "free")+
+  geom_smooth(method = lm)+
+  theme_classic()+
+  geom_hline(aes(yintercept = 0))
+```
+
+
+```{r}
+ggplot(dat1 %>% filter(r2_test > -1
+                       )%>% 
+  group_by(N, features, totals_effect, rho_X, nonlinear) %>%
+  mutate(cos_sim_rand = mean(cos_sim_rand)) %>%
+  ungroup()%>%
+  mutate(score = cos_sim - cos_sim_rand),
+  aes(y = score, x = r2_test))+
+  geom_point()+
+  facet_grid(features~N, scales = "free")+
+  geom_smooth(method = lm)+
+  theme_classic()+
+  geom_hline(aes(yintercept = 0))
+```
