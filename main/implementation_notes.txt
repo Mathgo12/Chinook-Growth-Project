@@ -10,3 +10,14 @@
     3. Display the rankings of random forest variable importance (e.g. on bar graphs) alongside the rankings of the simulated variable importance
     4. Compute the covariance between these two variable importance metrics
     
+    
+  
+# Generalized Additive Models
+    1. Import simulation datasets
+    2. Loop through the number of datasets: 
+        -Build GAM
+        -fit GAM to each dataset - use as many features as possible
+        -Compute variable importance for that dataset
+        -Record Variable Importance
+        -Record Effect Sizes -- 2 columns
+    3. 
