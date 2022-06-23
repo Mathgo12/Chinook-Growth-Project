@@ -1,5 +1,5 @@
-source("~/documents/simulate_nonlinear_data/function_sim.R")
-source("~/documents/simulate_nonlinear_data/time_series_sim.R")
+source("~/github/Chinook-Growth-Project/simulate_nonlinear_data/function_sim.R")
+source("~/github/Chinook-Growth-Project/simulate_nonlinear_data/time_series_sim.R")
 
 
 #' generate_data_set(dir,n, m, total_effect, nonlinear, interactions, rho_X, rho_U) 
@@ -49,15 +49,15 @@ generate_data_set <- function(dir,
 ##### run simulations
 
 n_ls <- c(30,50,100)
-m_ls <- c(2,5,10)
+m_ls <- c(5,10,15)
 total_effect_ls <- c(0.25,0.5,0.75)
 non_linear_ls <- c(0,1,3) # m 
 interactions_ls <- c(0,1,2) # #m/2*(m-1)
 rho_X_ls <- list(c(0.0,0.0), c(0.5,0.0), c(0.5,0.5))
 rho_U_ls <- list(c(0.0,0.0), c(0.5,0.0), c(0.5,0.5))
-i <- 0
-while(i < 100){
-  
+i <- 1
+while(i < 1000){
+  print(i)
   n = sample(n_ls,1)
   m = sample(m_ls,1)
   total_effect = sample(total_effect_ls,1)
@@ -72,7 +72,7 @@ while(i < 100){
   }
   if(m > non_linear & interactions  < m){
     i <- i + 1
-    generate_data_set(paste("~/documents/simulate_nonlinear_data/data_set_",i, sep = ""), n, m, 
+    generate_data_set(paste("~/github/Chinook-Growth-Project/simulate_nonlinear_data/data_set_",i, sep = ""), n, m, 
                      total_effect, non_linear , interactions, 
                     rho_X, rho_U)
   }
