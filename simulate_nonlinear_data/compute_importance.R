@@ -4,6 +4,7 @@ setwd("~/github/Chinook-Growth-Project")
 pars <- read.csv("simulate_nonlinear_data/test/par.csv")
 
 compute_importance <- function(j){
+  print(j)
   dat <- read.csv(paste("simulate_nonlinear_data/data_set_",j,"/par.csv",sep = ""))
   print(dat)
   impvals <- rep(0,20)
@@ -25,4 +26,8 @@ compute_importance <- function(j){
 }
 
 #compute_importance(3)
-parallel::mclapply(1:600,compute_importance, mc.cores = 10)
+parallel::mclapply(1:1000,compute_importance, mc.cores = 10)
+
+
+
+
