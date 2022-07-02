@@ -16,7 +16,7 @@ n <- nrow(dat)
 rand <- generate_var_importance(n)
 dat$rand <- rand
 dat
-for(i in 1:100){
+for(i in 1:1000){
   path <- paste("simulate_nonlinear_data/data_set_",
                 i,"/Imp.csv",sep = "")
   dat <- read.csv(path)
