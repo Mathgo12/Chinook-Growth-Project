@@ -9,6 +9,34 @@
     2. Set this variable importance as a new column in each 'Imp.csv'
     3. Display the rankings of random forest variable importance (e.g. on bar graphs) alongside the rankings of the simulated variable importance
     4. Compute the covariance between these two variable importance metrics
-    5. Display the covariance on a box plot
-    6. Save box plot summary statistics
     
+    
+  
+# Generalized Additive Models
+    1. Import simulation datasets
+    2. Loop through the number of datasets: 
+        -Build GAM
+        -fit GAM to each dataset - use as many features as possible
+        -Compute variable importance for that dataset
+        -Record Variable Importance - use partial dependence variances
+            **Note the disadvantagesof partial dependence (e.g., assumes features are completely independent)
+            
+        -Record Effect Sizes -- 2 columns
+       
+# Comparison of variable importance calculations between GAMs and Random Forests:
+    1. List of Variable Importances for all features in a dataset
+        -- Using GAM Predictions -- Partial dependence variances
+        -- Using Random Forest VIs. 
+    2. Use list (one for each model for 1 dataset)
+        - Standardize from 0 to 1 (~doubtful that this solves the scaling issue)
+        - Retrieve the total effects (true variable importances) -- list
+        - Cosine similarity (or some other metric) to compare the two lists 
+            record similarity
+            
+        - Compute similarities for GAM and RF
+        - Compute for all simulation datasets
+    3. Create boxplot of differences between similarities for GAMs and RFs
+        --> categorize based on the information in the datasets:
+                e.g. rho U, if nonlinear term exists, interactions, Number of training examples
+       
+    4. Record Results
